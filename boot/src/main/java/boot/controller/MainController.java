@@ -43,7 +43,7 @@ public class MainController {
 	
 	@GetMapping("geneProduct")
 	public String geneProduct(HttpServletRequest request){
-		request.setAttribute("mode", "MODE_HOME_GENEPRODUCT");
+		request.setAttribute("mode", "MODE_HOME_GENE_PRODUCT");
 		return "geneProduct";
 	}
  }

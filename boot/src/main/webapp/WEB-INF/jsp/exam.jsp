@@ -86,7 +86,7 @@
 			</div>
 		</c:when>
 		
-		<c:when test="${mode=='MODE_NEW_EXAM' || mode=='MODE_UPDATE_EXAM'}">
+		<c:when test="${mode=='MODE_NEW' || mode=='MODE_UPDATE'}">
 			<div class="container text-center">
 				<h3>Manage Exam</h3>
 				<hr />

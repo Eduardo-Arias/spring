@@ -28,18 +28,15 @@
 			<a href="/" class="navbar-brand">Home</a>
 			<div class="navbar-collapse collapse">
 				<ul class="nav navbar-nav">
-				
-					<li><a href="new-geneProduct">New Gene_Product</a></li>
-					<li><a href="all-geneProducts">All Gene_Products</a></li>
-					
-					
+					<li><a href="new-geneProduct">New Gene Product</a></li>
+					<li><a href="all-geneProducts">All Gene Products</a></li>					
 				</ul>
 			</div>
 		</div>
 	</div>
 	
 	<c:choose>
-		<c:when test="${mode=='MODE_HOME_GENEPRODUCT'}">
+		<c:when test="${mode=='MODE_HOME_GENE_PRODUCT'}">
 			<div class="container">
 				<div class="jumbotron text-center" id="homeDiv">
 					<h1>Welcome to Gene Product Manager</h1>
@@ -47,7 +44,7 @@
 			</div>
 		</c:when>
 		
-		<c:when test="${mode=='MODE_GENEPRODUCTS'}">
+		<c:when test="${mode=='MODE_GENE_PRODUCTS'}">
 			<div class="container text-center" id="geneProductsDiv">
 				<h3>My GeneProducts</h3>
 				<hr />
@@ -57,9 +54,9 @@
 							<tr>
 								<th>Id</th>
 								<th>SYMBOL</th>
-								<th>DBXREF_ID</th>
-								<th>SPECIES_ID</th>
-								<th>TYPE_ID</th>
+								<th>ID DBXREF</th>
+								<th>ID SPECIES</th>
+								<th>ID TYPE</th>
 								<th>FULL_NAME</th>
 								<th></th>
 								<th></th>
@@ -88,7 +85,7 @@
 			</div>
 		</c:when>
 		
-		<c:when test="${mode=='MODE_NEW_GENEPRODUCT' || mode=='MODE_UPDATE_GENEPRODUCT'}">
+		<c:when test="${mode=='MODE_NEW' || mode=='MODE_UPDATE'}">
 			<div class="container text-center">
 				<h3>Manage Gene Product</h3>
 				<hr />
@@ -103,7 +100,7 @@
 					</div>
 					
 					<div class="form-group">
-						<label class="control-label col-sm-3">Dbxref_id:</label>
+						<label class="control-label col-sm-3">Id Db xref:</label>
 						<div class="col-sm-7">
 							<input type="number" class="form-control" name="dbxrefId"
 								value="${geneProduct.dbxrefId}" />
@@ -111,7 +108,7 @@
 					</div>
 
 					<div class="form-group">
-						<label class="control-label col-sm-3">Species_id:</label>
+						<label class="control-label col-sm-3">Id Species:</label>
 						<div class="col-sm-7">
 							<input type="number" class="form-control" name="speciesId"
 								value="${geneProduct.speciesId}"/>
@@ -119,7 +116,7 @@
 					</div>
 					
 					<div class="form-group">
-						<label class="control-label col-sm-3">Type_id:</label>
+						<label class="control-label col-sm-3">Id Type:</label>
 						<div class="col-sm-7">
 							<input type="number" class="form-control" name="typeId"
 								value="${geneProduct.typeId}"/>
@@ -127,7 +124,7 @@
 					</div>
 					
 					<div class="form-group">
-						<label class="control-label col-sm-3">full_name:</label>
+						<label class="control-label col-sm-3">full name:</label>
 						<div class="col-sm-7">
 							<input type="text" class="form-control" name="fullName"
 								value="${geneProduct.fullName}"/>
