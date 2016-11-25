@@ -26,7 +26,7 @@ public class ExamController {
 	
 	@GetMapping("/new-exam")
 	public String newExam(HttpServletRequest request){
-		request.setAttribute("mode", "MODE_NEW_EXAM");
+		request.setAttribute("mode", "MODE_NEW");
 		return "exam";
 	}
 	
@@ -41,7 +41,7 @@ public class ExamController {
 	@GetMapping("/update-exam")
 	public String updateExam(@RequestParam int id, HttpServletRequest request){
 		request.setAttribute("exam", examService.findExam(id));
-		request.setAttribute("mode", "MODE_UPDATE_EXAM");
+		request.setAttribute("mode", "MODE_UPDATE");
 		return "exam";
 	}
 	

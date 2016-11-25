@@ -22,13 +22,13 @@ public class GenProductController {
 	@GetMapping("/all-geneProducts")
 	public String allGeneProducts(HttpServletRequest request){
 		request.setAttribute("geneProducts", geneProductService.findAll());
-		request.setAttribute("mode", "MODE_GENEPRODUCTS");
+		request.setAttribute("mode", "MODE_GENE_PRODUCTS");
 		return "geneProduct";
 	}
 	
 	@GetMapping("/new-geneProduct")
 	public String newGeneProduct(HttpServletRequest request){
-		request.setAttribute("mode", "MODE_NEW_GENEPRODUCT");
+		request.setAttribute("mode", "MODE_NEW");
 		return "geneProduct";
 	}
 	
@@ -36,14 +36,14 @@ public class GenProductController {
 	public String saveGeneProduct(@ModelAttribute GeneProduct geneProduct, BindingResult bindingResult, HttpServletRequest request){
 		geneProductService.save(geneProduct);
 		request.setAttribute("geneProducts", geneProductService.findAll());
-		request.setAttribute("mode", "MODE_GENEPRODUCTS");
+		request.setAttribute("mode", "MODE_GENE_PRODUCTS");
 		return "geneProduct";
 	}
 	
 	@GetMapping("/update-geneProduct")
 	public String updateGeneProduct(@RequestParam int id, HttpServletRequest request){
 		request.setAttribute("geneProduct", geneProductService.findGeneProduct(id));
-		request.setAttribute("mode", "MODE_UPDATE_GENEPRODUCT");
+		request.setAttribute("mode", "MODE_UPDATE");
 		return "geneProduct";
 	}
 	
@@ -51,7 +51,7 @@ public class GenProductController {
 	public String deleteGeneProduct(@RequestParam int id, HttpServletRequest request){
 		geneProductService.delete(id);
 		request.setAttribute("geneProducts", geneProductService.findAll());
-		request.setAttribute("mode", "MODE_GENEPRODUCTS");
+		request.setAttribute("mode", "MODE_GENE_PRODUCTS");
 		return "geneProduct";
 	}
 }
