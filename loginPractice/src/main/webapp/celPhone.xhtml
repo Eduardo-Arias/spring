@@ -1,0 +1,54 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"> 
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html"> 
+
+<h:head></h:head> 
+<body> 
+	<a href="/index.xhtml">Return</a>
+	<h1>Manager CelPhone</h1>
+    <h:form id="frmCelPhone">
+		Model:  <h:inputText value="#{celPhoneController.celPhone.model}"/>
+		Number: <h:inputText value="#{celPhoneController.celPhone.number}"/>
+		Price:  <h:inputText value="#{celPhoneController.celPhone.price}"/>
+		   <h:commandButton action="#{celPhoneController.save}" value="Save">
+			<f:ajax execute="frmCelPhone" render="frmCelPhone"/>
+		</h:commandButton>
+		<h:commandButton rendered="#{celPhoneController.editMode}"
+		 	action="#{celPhoneController.save}" value="Cancel">
+		 		<f:ajax reder="frmCelPhone"></f:ajax>
+		 </h:commandButton>
+		
+		<h:dataTable value="#{celPhoneController.celPhones}" var="cp" id="dtCelPhone">
+			<h:column>
+				<f:facet name="header">ID</f:facet>
+				#{cp.id}
+			</h:column>
+			<h:column>
+				<f:facet name="header">Model</f:facet>
+				#{cp.model}
+			</h:column>
+			<h:column>
+				<f:facet name="header">Number</f:facet>
+				#{cp.number}
+			</h:column>
+			<h:column>
+				<f:facet name="header">Price</f:facet>
+				#{cp.price}
+			</h:column>
+			<h:column>
+				<f:facet name="header">Actions</f:facet>
+				<h:commandButton action="#{celPhoneController.delete(cp)}"
+				 value="Delete" onclick="return window.confirm('Are you sure?')">
+				 <f:ajax render="frmCelPhone:dtCelPhone"/>
+				 </h:commandButton>
+				 <h:commandButton action="#{celPhoneController.update(cp)}"
+				 value="Update">
+				 <f:ajax render="frmCelPhone"/>
+				 </h:commandButton>
+			</h:column>
+		</h:dataTable>
+	</h:form>
+</body> 
+</html>

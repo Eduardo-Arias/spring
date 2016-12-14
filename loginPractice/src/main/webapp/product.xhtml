@@ -1,0 +1,51 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html">
+
+<h:head></h:head>
+<body>
+	<a href="/index.xhtml">Return</a>
+	<h1>Product</h1>
+	<h:form id="frmProduct">
+	Name:<h:inputText value="#{productController.product.name}" />
+	
+	Price:<h:inputText value="#{productController.product.price}" />
+	Stock:<h:inputText value="#{productController.product.stock}" />
+		<h:commandButton action="#{productController.save}" value="Save">
+			<f:ajax execute="frmProduct" render="frmProduct" />
+		</h:commandButton>
+		<h:commandButton rendered="#{productController.editMode}"
+			action="#{productController.save}" value="Cancel">
+			<f:ajax render="frmProduct"></f:ajax>
+		</h:commandButton>
+		<h:dataTable value="#{productController.products}" var="p"
+			id="dtProduct">
+			<h:column>
+				<f:facet name="header">ID</f:facet>
+		 #{p.id} </h:column>
+			<h:column>
+				<f:facet name="header">Name</f:facet>
+		 #{p.name} </h:column>
+			<h:column>
+				<f:facet name="header">Price</f:facet>
+		 #{p.price} </h:column>
+			<h:column>
+				<f:facet name="header">Stock</f:facet>
+		 #{p.stock} </h:column>
+			<h:column>
+				<f:facet name="header">Actions</f:facet>
+				<h:commandButton action="#{productController.delete(p)}"
+					value="Delete" onClick="return window.confirm ('Are you sure?')">
+					<f:ajax render="frmProduct:dtProduct" />
+				</h:commandButton>
+				<h:commandButton action="#{productController.update(p)}"
+					value="Update">
+					<f:ajax render="frmProduct" />
+				</h:commandButton>
+			</h:column>
+		</h:dataTable>
+	</h:form>
+</body>
+</html>

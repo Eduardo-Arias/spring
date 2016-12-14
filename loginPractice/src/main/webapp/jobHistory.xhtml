@@ -1,0 +1,57 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"> 
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:rich="http://richfaces.org/rich"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:a4j="http://richfaces.org/a4j"
+      xmlns:h="http://java.sun.com/jsf/html"> 
+
+<h:head></h:head> 
+<body>
+<a href="/index.xhtml">Return</a>
+    <h1>Job History</h1>
+    <h:form id="frmJobHistory">
+		Id Employe:<h:inputText value="#{jobHistoryController.jobHistory.idEmploye}"/>
+		Star Date: <h:inputText value="#{jobHistoryController.jobHistory.starDate}"/>
+		End Date:<h:inputText value="#{jobHistoryController.jobHistory.endDate}"/>
+		Id Departament:<h:inputText value="#{jobHistoryController.jobHistory.idDepartament}"/>
+		<h:commandButton action="#{jobHistoryController.save}" value="Save">
+			<f:ajax execute="frmJobHistory" render="frmJobHistory"/>
+		</h:commandButton>
+		<h:commandButton rendered="#{jobHistoryController.editMode}"
+		 	action="#{jobHistoryController.save}" value="Cancel">
+		 		<f:ajax reder="frmJobHistory"></f:ajax>
+		 </h:commandButton>
+		
+		<h:dataTable value="#{jobHistoryController.jobHistorys}" var="j" id="dtJobHistory">
+			<h:column>
+				<f:facet name="header">ID</f:facet>
+				#{j.id}
+			</h:column>
+			<h:column>
+				<f:facet name="header">Star Data</f:facet>
+				#{j.starDate}
+			</h:column>
+			<h:column>
+				<f:facet name="header">End Date</f:facet>
+				#{j.endDate}
+			</h:column>
+			<h:column>
+				<f:facet name="header">Id Departament</f:facet>
+				#{j.idDepartament}
+			</h:column>
+			<h:column>
+				<f:facet name="header">Actions</f:facet>
+				<h:commandButton action="#{jobHistoryController.delete(j)}"
+				 value="Delete" onclick="return window.confirm('Are you sure?')">
+				 <f:ajax render="frmJobHistory:dtJobHistory"/>
+				 </h:commandButton>
+				 <h:commandButton action="#{jobHistoryController.update(j)}"
+				 value="Update">
+				 <f:ajax render="frmJobHistory"/>
+				 </h:commandButton>
+			</h:column>
+		</h:dataTable>
+	</h:form>
+</body> 
+</html>
